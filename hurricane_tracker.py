@@ -4,8 +4,8 @@ Module: hurricane_tracker
 Program to visualize the path of a Hurricane in the North Atlantic Basin.
 
 Authors:
-1) Name - USD Email Address
-2) Name - USD Email Address
+1) Gabriel Stewart - gstewart@sandiego.edu
+2) Parker Brown - parkerbrown@sandiego.edu
 """
 import turtle
 
