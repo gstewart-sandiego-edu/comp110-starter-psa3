@@ -4,8 +4,8 @@ Module: movie_sentiment
 Program to analyze movie reviews and predict the sentiment of new reviews.
 
 Authors:
-1) Name - USD Email Address
-2) Name - USD Email Address
+Parker Brown - parkerbrown@sandiego.edu
+Gabe Stewart - gstewart@sandiego.edu
 """
 
 def calculate_average_review(target_word, review_filename):
