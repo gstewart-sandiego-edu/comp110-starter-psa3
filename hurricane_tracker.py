@@ -50,7 +50,7 @@ def initialize_screen():
 
 def calculate_category(wind_speed_mph: int) -> int:
     """
-    Returns which category a hurricane falls into based on its top wind speed.
+    Returns which category a hurricane falls into based on its wind speed.
 
     Parameters:
         wind_speed_mph (int): The maximum wind speed in miles per hour
@@ -71,6 +71,7 @@ def calculate_category(wind_speed_mph: int) -> int:
     else:
         return 0
     
+
 def get_point_color(category: int) -> str:
     """
     Specifies the color that a data point should be drawn in based on the hurricane's category.
@@ -107,6 +108,7 @@ def get_line_size(category: int) -> int:
     """
     return category + 1
 
+
 def animate_hurricane(data_filename):
     """
     Animates the path of a hurricane.
@@ -126,7 +128,15 @@ def animate_hurricane(data_filename):
 
 
     # Your code to perform the animation will go after this line.
-
+    f = open(data_filename, "r")
+    all_hurricane_data = f.readlines()
+    for line in all_hurricane_data:
+        data_points = line.split(",")
+        latitude = data_points[2]
+        longitude = data_points[3]
+        wind_speed = data_points[4]
+        # TODO PARKER: Write code that actually moves the turtle to draw the
+        # chart. I defined all the variables and functions that you will need.
 
     # DO NOT MODIFY THE FOLLOWING LINE! (It make sure the turtle window stays
     # open).
