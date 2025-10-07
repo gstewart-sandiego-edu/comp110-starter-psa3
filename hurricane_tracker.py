@@ -56,7 +56,7 @@ def calculate_category(wind_speed_mph: int) -> int:
         wind_speed_mph (int): The maximum wind speed in miles per hour
 
     Returns:
-        int: The category of the hurricane from 0 to 5.
+        int: The category of the hurricane from 0 (not hurricane strength) to 5.
     """
     if wind_speed_mph > 156:
         return 5
@@ -70,6 +70,42 @@ def calculate_category(wind_speed_mph: int) -> int:
         return 1
     else:
         return 0
+    
+def get_point_color(category: int) -> str:
+    """
+    Specifies the color that a data point should be drawn in based on the hurricane's category.
+
+    Parameters:
+        category (int): The category level of the hurricane from 0 (not hurricane strength) to 5.
+
+    Returns:
+        str: The turtle color name to be used for that category.
+    """
+    if category == 1:
+        return "blue"
+    elif category == 2:
+        return "green"
+    elif category == 3:
+        return "yellow"
+    elif category == 4:
+        return "orange"
+    elif category == 5:
+        return "red"
+    else:
+        return "white"
+    
+
+def get_line_size(category: int) -> int:
+    """
+    Specifies the pen thickness to draw with based on the hurricane's category.
+
+    Parameters:
+        category (int): The category level of the hurricane from 0 (not hurricane strength) to 5.
+
+    Returns:
+        int: The turtle pen thickness to be used for that category.
+    """
+    return category + 1
 
 def animate_hurricane(data_filename):
     """
