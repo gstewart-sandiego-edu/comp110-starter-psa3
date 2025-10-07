@@ -9,7 +9,7 @@ Authors:
 """
 import turtle
 
-
+# not allowed to modify this function!!
 def initialize_screen():
     """
     Creates the Turtle and the Screen with the map background
@@ -48,7 +48,28 @@ def initialize_screen():
     return [t, wn, map_bg_img]
 
 
-# Define the get_category function here
+def calculate_category(wind_speed_mph: int) -> int:
+    """
+    Returns which category a hurricane falls into based on its top wind speed.
+
+    Parameters:
+        wind_speed_mph (int): The maximum wind speed in miles per hour
+
+    Returns:
+        int: The category of the hurricane from 0 to 5.
+    """
+    if wind_speed_mph > 156:
+        return 5
+    elif wind_speed_mph >= 130:
+        return 4
+    elif wind_speed_mph >= 111:
+        return 3
+    elif wind_speed_mph >= 96:
+        return 2
+    elif wind_speed_mph >= 74:
+        return 1
+    else:
+        return 0
 
 def animate_hurricane(data_filename):
     """
