@@ -17,7 +17,7 @@ def calculate_average_review(target_word, review_filename):
         review_filename (type: string): The path to the file containing the movie reviews.
 
     Returns:
-        (type: float) The average score of all of the reviews which contain the given word. Returns None if none of the reviews contain the word.
+        (type: float) The average score of all of the reviews which contain the given word. Returns 2.0 if none of the reviews contain the word.
     """
 
     review_file = open(review_filename, 'r')
@@ -28,7 +28,7 @@ def calculate_average_review(target_word, review_filename):
         # make lower case to avoid case sensitivity
         review_lower = review.lower()  
         review_split = review_lower.split(" ")
-        if target_word in review_split[1:]:
+        if target_word.lower() in review_split[1:]:
             total_score += int(review_split[0])
             num_reviews += 1
 
@@ -37,7 +37,7 @@ def calculate_average_review(target_word, review_filename):
 
     # calculate the average review score
     if num_reviews == 0:
-        return None
+        return 2.0
     else:
         return total_score / num_reviews
 
@@ -56,18 +56,15 @@ def calculate_estimated_score(review_text, review_filename):
 
     num_words = 0
     total_score = 0
-    review_words = review_text.split()
+    review_text_clean = review_text.strip(".,!?-")
+    review_words = review_text_clean.split()
     for word in review_words:
         print(word)
         word_score = calculate_average_review(word, review_filename)
         print(word_score)
-        if word_score:
-            total_score += word_score
-            num_words += 1
-    if num_words == 0:
-        return None
-    else:
-        return total_score / num_words
+        total_score += word_score
+        num_words += 1
+    return total_score / num_words
 
 
 
