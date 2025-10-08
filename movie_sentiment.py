@@ -56,7 +56,10 @@ def calculate_estimated_score(review_text, review_filename):
 
     num_words = 0
     total_score = 0
-    review_text_clean = review_text.strip(".,!?-")
+    review_text_clean = ""
+    for char in review_text:
+        if not char in [",", ".", "!", "-"]:
+            review_text_clean += char
     review_words = review_text_clean.split()
     for word in review_words:
         word_score = calculate_average_review(word, review_filename)
