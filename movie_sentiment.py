@@ -44,11 +44,30 @@ def calculate_average_review(target_word, review_filename):
 
 def calculate_estimated_score(review_text, review_filename):
     """
-    FIXME: Fill in this docstring comment, using the exact format given for the
-    average_review docstring comment.
+    Calculates and returns the estimated score for a movie review based on the average score of each word.
+
+    Parameters:
+        review_text (type: string): The review to estimate the score of.
+        review_filename (type: string): The path to the file containing the movie review data to calculate the word averages.
+
+    Returns:
+        (type: float) The estimated score of the movie review. If none of the words were found in the file, returns None.
     """
 
-    return None     # replace this with returning the estimated review
+    num_words = 0
+    total_score = 0
+    review_words = review_text.split()
+    for word in review_words:
+        print(word)
+        word_score = calculate_average_review(word, review_filename)
+        print(word_score)
+        if word_score:
+            total_score += word_score
+            num_words += 1
+    if num_words == 0:
+        return None
+    else:
+        return total_score / num_words
 
 
 
@@ -59,6 +78,8 @@ def get_review_and_estimate():
     It then calculates the estimated rating of the review they entered, along
     with a description of that rating (e.g. "neutral" or "slightly positive").
     """
+
+    # TODO PARKER: Finish this function
 
     pass # replace this line of code with your function implementation
 
