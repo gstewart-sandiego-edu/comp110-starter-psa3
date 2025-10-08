@@ -138,6 +138,8 @@ def animate_hurricane(data_filename):
         # TODO PARKER: Write code that actually moves the turtle to draw the
         # chart. I defined all the variables and functions that you will need.
 
+
+    f.close()
     # DO NOT MODIFY THE FOLLOWING LINE! (It make sure the turtle window stays
     # open).
     turtle.done()
