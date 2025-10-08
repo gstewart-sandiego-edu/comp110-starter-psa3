@@ -5,36 +5,41 @@ Program to analyze movie reviews and predict the sentiment of new reviews.
 
 Authors:
 Parker Brown - parkerbrown@sandiego.edu
-Gabe Stewart - gstewart@sandiego.edu
+Gabriel Stewart - gstewart@sandiego.edu
 """
 
 def calculate_average_review(target_word, review_filename):
     """
-    FIXME: Add function synopsis here.
+    Calculates and returns the average score of movie reviews which contain a given word.
 
     Parameters:
-    target_word (type: string): The word to look for in the reviews.
-    FIXME: add info about second parameter
+        target_word (type: string): The word to look for in the reviews.
+        review_filename (type: string): The path to the file containing the movie reviews.
 
     Returns:
-    (type: float) FIXME by describing what is returned here.
+        (type: float) The average score of all of the reviews which contain the given word. Returns None if none of the reviews contain the word.
     """
 
     review_file = open(review_filename, 'r')
 
+    num_reviews = 0
+    total_score = 0
     for review in review_file:
         # make lower case to avoid case sensitivity
         review_lower = review.lower()  
-
-        # FIXME: finish implementing this loop body
-
+        review_split = review_lower.split(" ")
+        if target_word in review_split[1:]:
+            total_score += int(review_split[0])
+            num_reviews += 1
 
     # done reading file, so close it
     review_file.close()
 
-    # FIXME: calculate the average review score
-
-    return None     # replace this with returning the calculated average
+    # calculate the average review score
+    if num_reviews == 0:
+        return None
+    else:
+        return total_score / num_reviews
 
 
 def calculate_estimated_score(review_text, review_filename):
