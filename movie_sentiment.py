@@ -59,9 +59,7 @@ def calculate_estimated_score(review_text, review_filename):
     review_text_clean = review_text.strip(".,!?-")
     review_words = review_text_clean.split()
     for word in review_words:
-        print(word)
         word_score = calculate_average_review(word, review_filename)
-        print(word_score)
         total_score += word_score
         num_words += 1
     return total_score / num_words
