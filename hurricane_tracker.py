@@ -8,6 +8,7 @@ Authors:
 2) Parker Brown - parkerbrown@sandiego.edu
 """
 import turtle
+import time
 
 # not allowed to modify this function!!
 def initialize_screen():
@@ -126,18 +127,65 @@ def animate_hurricane(data_filename):
     # in honor of the NOAA (National Oceanic and Atmospheric Administration).
     noah = setup_data[0]
 
-
     # Your code to perform the animation will go after this line.
     f = open(data_filename, "r")
     all_hurricane_data = f.readlines()
-    for line in all_hurricane_data:
-        data_points = line.split(",")
-        latitude = data_points[2]
-        longitude = data_points[3]
-        wind_speed = data_points[4]
-        # TODO PARKER: Write code that actually moves the turtle to draw the
-        # chart. I defined all the variables and functions that you will need.
 
+    prev_lat = None
+    prev_lon = None
+
+    # Get the screen and enable visible animation (initialize_screen disables it)
+    screen = setup_data[1]
+    
+
+    for line in all_hurricane_data:
+        # skip empty lines
+        if line.strip() == "":
+            continue
+
+        data_points = line.split(",")
+
+        # Expected CSV columns: date, time, latitude, longitude, wind_speed, pressure
+        lat_str = data_points[2]
+        lon_str = data_points[3]
+        wind_str = data_points[4]
+
+        # convert to numeric types
+        latitude = float(lat_str)
+        longitude = float(lon_str)
+        wind_speed = int(float(wind_str))
+
+        category = calculate_category(wind_speed)
+        color = get_point_color(category)
+        pen_size = get_line_size(category)
+
+        # if there is a previous point, draw a line from previous to current
+        if prev_lat is not None and prev_lon is not None:
+            noah.penup()
+            noah.goto(prev_lon, prev_lat)
+            noah.pendown()
+            noah.pensize(pen_size)
+            noah.pencolor(color)
+            noah.goto(longitude, latitude)
+
+        # draw a Line at the current location to mark the observation
+        
+        
+            
+            noah.pensize(1)
+            noah.left(90)
+            noah.forward(0.5)
+            noah.backward(0.5)
+            noah.right(90)
+        
+
+        # remember this point as previous for next iteration
+        prev_lat = latitude
+        prev_lon = longitude
+
+        # update the screen so students see the drawing build up, then pause briefly
+        screen.update()
+        time.sleep(0.04)
 
     f.close()
     # DO NOT MODIFY THE FOLLOWING LINE! (It make sure the turtle window stays
