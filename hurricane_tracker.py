@@ -186,6 +186,7 @@ def animate_hurricane(data_filename):
         # update the screen so students see the drawing build up, then pause briefly
         screen.update()
         time.sleep(0.04)
+        
 
     f.close()
     # DO NOT MODIFY THE FOLLOWING LINE! (It make sure the turtle window stays
