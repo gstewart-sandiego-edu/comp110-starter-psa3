@@ -11,6 +11,8 @@ import turtle
 import time
 
 # not allowed to modify this function!!
+
+
 def initialize_screen():
     """
     Creates the Turtle and the Screen with the map background
@@ -71,7 +73,7 @@ def calculate_category(wind_speed_mph: int) -> int:
         return 1
     else:
         return 0
-    
+
 
 def get_point_color(category: int) -> str:
     """
@@ -95,7 +97,7 @@ def get_point_color(category: int) -> str:
         return "orange"
     elif category == 5:
         return "red"
-    
+
 
 def get_line_size(category: int) -> int:
     """
@@ -128,6 +130,7 @@ def animate_hurricane(data_filename):
     noah = setup_data[0]
 
     # Your code to perform the animation will go after this line.
+    noah.penup()
     f = open(data_filename, "r")
     all_hurricane_data = f.readlines()
 
@@ -136,7 +139,6 @@ def animate_hurricane(data_filename):
 
     # Get the screen and enable visible animation (initialize_screen disables it)
     screen = setup_data[1]
-    
 
     for line in all_hurricane_data:
         # skip empty lines
@@ -158,39 +160,37 @@ def animate_hurricane(data_filename):
         category = calculate_category(wind_speed)
         color = get_point_color(category)
         pen_size = get_line_size(category)
-        
 
-        # if there is a previous point, draw a line from previous to current
-        if prev_lat is not None and prev_lon is not None:
-            
-            
-            noah.penup()
-            noah.goto(prev_lon, prev_lat)
-            noah.pendown()
-            noah.pensize(pen_size)
-            noah.pencolor(color)
-            noah.goto(longitude, latitude)
+        noah.pensize(pen_size)
+        noah.pencolor(color)
+        noah.goto(longitude, latitude)
+        if category != 0:
+            noah.write(str(category))
+        noah.pendown()
 
-        # draw a Line at the current location to mark the observation
-        
-        
-            
-            noah.pensize(1)
-            noah.left(90)
-            noah.forward(0.5)
-            noah.backward(0.5)
-            noah.right(90)
-        
+        # # if there is a previous point, draw a line from previous to current
+        # if prev_lat is not None and prev_lon is not None:
 
-        # remember this point as previous for next iteration
-        prev_lat = latitude
-        prev_lon = longitude
-        
+        #     noah.penup()
+        #     noah.goto(prev_lon, prev_lat)
+        #     noah.pendown()
+        #     noah.pensize(pen_size)
+        #     noah.pencolor(color)
+        #     noah.goto(longitude, latitude)
+
+        # # draw a Line at the current location to mark the observation
+
+        #     noah.pensize(1)
+        #     noah.left(90)
+        #     noah.forward(0.5)
+        #     noah.backward(0.5)
+        #     noah.right(90)
+
+        # # remember this point as previous for next iteration
+        # prev_lat = latitude
+        # prev_lon = longitude
 
         # update the screen so students see the drawing build up, then pause briefly
-        
-       
-        
 
     f.close()
     # DO NOT MODIFY THE FOLLOWING LINE! (It make sure the turtle window stays
