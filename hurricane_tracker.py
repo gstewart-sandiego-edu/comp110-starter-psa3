@@ -109,6 +109,23 @@ def get_line_size(category: int) -> int:
     return category + 1
 
 
+def sanitize(dirty: str) -> str:
+    """
+    Returns only the numeric (0-9, "-", and ".") characters of a string.
+
+    Parameters:
+        dirty (str): The string to search for digits in
+
+    Returns:
+        str: The numeric (0-9, "-", and ".") characters in the string.
+    """
+    sanitized = ""
+    for ch in dirty:
+        if ch in "0123456789.-":
+            sanitized += ch
+    return sanitized
+
+
 def animate_hurricane(data_filename):
     """
     Animates the path of a hurricane.
@@ -142,9 +159,9 @@ def animate_hurricane(data_filename):
         data_points = line.split(",")
 
         # Expected CSV columns: date, time, latitude, longitude, wind_speed, pressure
-        lat_str = data_points[2]
-        lon_str = data_points[3]
-        wind_str = data_points[4]
+        lat_str = sanitize(data_points[2])
+        lon_str = sanitize(data_points[3])
+        wind_str = sanitize(data_points[4])
 
         # convert to numeric types
         latitude = float(lat_str)
