@@ -131,6 +131,7 @@ def animate_hurricane(data_filename):
 
     # Your code to perform the animation will go after this line.
     noah.penup()
+    noah.hideturtle()
     f = open(data_filename, "r")
     all_hurricane_data = f.readlines()
 
@@ -161,6 +162,7 @@ def animate_hurricane(data_filename):
         color = get_point_color(category)
         pen_size = get_line_size(category)
 
+        noah.showturtle()
         noah.pensize(pen_size)
         noah.pencolor(color)
         noah.goto(longitude, latitude)
