@@ -163,6 +163,7 @@ def animate_hurricane(data_filename):
         # if there is a previous point, draw a line from previous to current
         if prev_lat is not None and prev_lon is not None:
             
+            
             noah.penup()
             noah.goto(prev_lon, prev_lat)
             noah.pendown()

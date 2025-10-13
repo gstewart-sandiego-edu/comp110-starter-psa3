@@ -77,9 +77,37 @@ def get_review_and_estimate():
     with a description of that rating (e.g. "neutral" or "slightly positive").
     """
 
-    # TODO PARKER: Finish this function
-    
-    pass # replace this line of code with your function implementation
+    # Prompt the user for a review and a filename
+    review_text = input("Enter a movie review: ")
+    review_filename = input("Enter the name of the review file: ")
+
+    # Calculate the estimated score
+    estimated = calculate_estimated_score(review_text, review_filename)
+
+    # If calculation produced None or invalid value, inform the user
+    if estimated is None:
+        print("Could not estimate a score from the provided data.")
+        return
+
+    # Print the numeric estimate rounded to two decimals
+    #print(f"Estimated score: {estimated:.2f}")
+    #print("estimated score:", estimated, "(", description, ")")
+
+    # Provide a short textual description for the score
+    if estimated < 0.5:
+        description = "negative"
+    elif estimated < 1.5:
+        description = "somewhat negative"
+    elif estimated < 2.5:
+        description = "neutral"
+    elif estimated < 3.5:
+        description = "somewhat positive"
+    else:
+        description = "positive"
+
+    print(f"Estimated score: {estimated} ({description})")
+
+    #print(f"Description: {description}")
 
 
 # Do not modify anything after this point.
