@@ -8,9 +8,6 @@ Authors:
 2) Parker Brown - parkerbrown@sandiego.edu
 """
 import turtle
-import time
-
-# not allowed to modify this function!!
 
 
 def initialize_screen():
@@ -130,16 +127,12 @@ def animate_hurricane(data_filename):
     noah = setup_data[0]
 
     # Your code to perform the animation will go after this line.
+
+    # Prepare the turtle and the file
     noah.penup()
     noah.hideturtle()
     f = open(data_filename, "r")
     all_hurricane_data = f.readlines()
-
-    prev_lat = None
-    prev_lon = None
-
-    # Get the screen and enable visible animation (initialize_screen disables it)
-    screen = setup_data[1]
 
     for line in all_hurricane_data:
         # skip empty lines
@@ -158,41 +151,21 @@ def animate_hurricane(data_filename):
         longitude = float(lon_str)
         wind_speed = int(float(wind_str))
 
+        # set drawing properties
         category = calculate_category(wind_speed)
         color = get_point_color(category)
         pen_size = get_line_size(category)
 
+        # draw and label the point
         noah.pensize(pen_size)
         noah.pencolor(color)
         noah.goto(longitude, latitude)
         if category != 0:
             noah.write(str(category))
+
+        # prepare the turtle for moving to the next location
         noah.pendown()
         noah.showturtle()
-
-        # # if there is a previous point, draw a line from previous to current
-        # if prev_lat is not None and prev_lon is not None:
-
-        #     noah.penup()
-        #     noah.goto(prev_lon, prev_lat)
-        #     noah.pendown()
-        #     noah.pensize(pen_size)
-        #     noah.pencolor(color)
-        #     noah.goto(longitude, latitude)
-
-        # # draw a Line at the current location to mark the observation
-
-        #     noah.pensize(1)
-        #     noah.left(90)
-        #     noah.forward(0.5)
-        #     noah.backward(0.5)
-        #     noah.right(90)
-
-        # # remember this point as previous for next iteration
-        # prev_lat = latitude
-        # prev_lon = longitude
-
-        # update the screen so students see the drawing build up, then pause briefly
 
     f.close()
     # DO NOT MODIFY THE FOLLOWING LINE! (It make sure the turtle window stays

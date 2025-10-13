@@ -8,6 +8,7 @@ Parker Brown - parkerbrown@sandiego.edu
 Gabriel Stewart - gstewart@sandiego.edu
 """
 
+
 def calculate_average_review(target_word, review_filename):
     """
     Calculates and returns the average score of movie reviews which contain a given word.
@@ -24,9 +25,11 @@ def calculate_average_review(target_word, review_filename):
 
     num_reviews = 0
     total_score = 0
+
+    # search for instances of the given word and add their scores
     for review in review_file:
         # make lower case to avoid case sensitivity
-        review_lower = review.lower()  
+        review_lower = review.lower()
         review_split = review_lower.split(" ")
         if target_word.lower() in review_split[1:]:
             total_score += int(review_split[0])
@@ -56,17 +59,20 @@ def calculate_estimated_score(review_text, review_filename):
 
     num_words = 0
     total_score = 0
+
+    # clean up the string by removing special characters
     review_text_clean = ""
     for char in review_text:
         if not char in [",", ".", "!", "-"]:
             review_text_clean += char
+
+    # calculate the score of each word then average them
     review_words = review_text_clean.split()
     for word in review_words:
         word_score = calculate_average_review(word, review_filename)
         total_score += word_score
         num_words += 1
     return total_score / num_words
-
 
 
 def get_review_and_estimate():
@@ -89,10 +95,6 @@ def get_review_and_estimate():
         print("Could not estimate a score from the provided data.")
         return
 
-    # Print the numeric estimate rounded to two decimals
-    #print(f"Estimated score: {estimated:.2f}")
-    #print("estimated score:", estimated, "(", description, ")")
-
     # Provide a short textual description for the score
     if estimated < 0.5:
         description = "negative"
@@ -106,8 +108,6 @@ def get_review_and_estimate():
         description = "positive"
 
     print(f"Estimated score: {estimated} ({description})")
-
-    #print(f"Description: {description}")
 
 
 # Do not modify anything after this point.
