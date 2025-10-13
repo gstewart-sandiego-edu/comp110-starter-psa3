@@ -83,7 +83,9 @@ def get_point_color(category: int) -> str:
     Returns:
         str: The turtle color name to be used for that category.
     """
-    if category == 1:
+    if category == 0:
+        return "white"
+    elif category == 1:
         return "blue"
     elif category == 2:
         return "green"
@@ -93,8 +95,6 @@ def get_point_color(category: int) -> str:
         return "orange"
     elif category == 5:
         return "red"
-    else:
-        return "white"
     
 
 def get_line_size(category: int) -> int:
@@ -158,9 +158,11 @@ def animate_hurricane(data_filename):
         category = calculate_category(wind_speed)
         color = get_point_color(category)
         pen_size = get_line_size(category)
+        
 
         # if there is a previous point, draw a line from previous to current
         if prev_lat is not None and prev_lon is not None:
+            
             noah.penup()
             noah.goto(prev_lon, prev_lat)
             noah.pendown()
@@ -182,10 +184,11 @@ def animate_hurricane(data_filename):
         # remember this point as previous for next iteration
         prev_lat = latitude
         prev_lon = longitude
+        
 
         # update the screen so students see the drawing build up, then pause briefly
-        screen.update()
-        time.sleep(0.04)
+        
+       
         
 
     f.close()
