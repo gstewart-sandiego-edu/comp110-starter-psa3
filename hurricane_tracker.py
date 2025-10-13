@@ -162,13 +162,13 @@ def animate_hurricane(data_filename):
         color = get_point_color(category)
         pen_size = get_line_size(category)
 
-        noah.showturtle()
         noah.pensize(pen_size)
         noah.pencolor(color)
         noah.goto(longitude, latitude)
         if category != 0:
             noah.write(str(category))
         noah.pendown()
+        noah.showturtle()
 
         # # if there is a previous point, draw a line from previous to current
         # if prev_lat is not None and prev_lon is not None:
