@@ -35,7 +35,7 @@ def calculate_average_review(target_word, review_filename):
             total_score += int(review_split[0])
             num_reviews += 1
 
-    # done reading file, so close it
+    # done reading file
     review_file.close()
 
     # calculate the average review score
